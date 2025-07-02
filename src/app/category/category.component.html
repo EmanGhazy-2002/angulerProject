@@ -1,0 +1,15 @@
+<carousel [interval]="3000" [noPause]="false" [showIndicators]="true">
+  @for (product of products; track product.id) {
+  <slide>
+    <img
+      [src]="product.image"
+      class="d-block w-100"
+      alt="{{ product.title }}"
+      style="height: 300px; object-fit: fill"
+    />
+    <div class="carousel-caption d-none d-md-block bd-dark rounded">
+      <p>{{ product.price }} EGP</p>
+    </div>
+  </slide>
+  }
+</carousel>
