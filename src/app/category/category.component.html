@@ -1,5 +1,5 @@
 <carousel [interval]="3000" [noPause]="false" [showIndicators]="true">
-  @for (product of products; track product.id) {
+  @for (product of Products; track $index) {
   <slide>
     <img
       [src]="product.image"

@@ -1,0 +1,16 @@
+<div class="card product-card" style="width: 400px; height: 400px">
+  <img
+    [src]="Item()?.image"
+    class="card-img-top product-img"
+    style="object-fit: cover"
+    alt="{{ Item()?.title }}"
+  />
+  <div class="card-body">
+    <h5 class="card-title">{{ Item()?.title }}</h5>
+    <p class="card-text">{{ Item()?.price }} EGP</p>
+    @if (Item()?.onSale) {
+    <p class="card-text">On Sale</p>
+    }
+    <a href="#" class="btn btn-primary">Add to Cart</a>
+  </div>
+</div>
