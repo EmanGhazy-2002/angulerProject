@@ -1,16 +1,27 @@
-<div class="card product-card" style="width: 400px; height: 400px">
-  <img
-    [src]="Item()?.image"
-    class="card-img-top product-img"
-    style="object-fit: cover"
-    alt="{{ Item()?.title }}"
-  />
-  <div class="card-body">
-    <h5 class="card-title">{{ Item()?.title }}</h5>
-    <p class="card-text">{{ Item()?.price }} EGP</p>
-    @if (Item()?.onSale) {
-    <p class="card-text">On Sale</p>
-    }
-    <a href="#" class="btn btn-primary">Add to Cart</a>
+<div class="products-container">
+  @if (Item()) {
+  <div class="card product-card" style="width: 400px; height: 400px">
+    <img
+      [src]="Item()?.image"
+      class="card-img-top product-img"
+      style="object-fit: cover"
+      alt="{{ Item()?.title }}"
+    />
+    <div class="card-body d-flex flex-column">
+      <h5 class="card-title">{{ Item()?.title }}</h5>
+      <p class="card-text">{{ Item()?.price }} EGP</p>
+      @if (Item()?.onSale) {
+      <p class="card-text text-success">On Sale</p>
+      }
+      <div class="mt-auto d-flex gap-2 justify-content-center">
+        <a
+          class="btn btn-primary btn-sm"
+          [routerLink]="['/details', Item()?.id]"
+          >Details</a
+        >
+        <a href="#" class="btn btn-outline-secondary btn-sm">Add to Cart</a>
+      </div>
+    </div>
   </div>
+  }
 </div>

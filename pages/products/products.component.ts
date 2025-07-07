@@ -2,21 +2,41 @@ import { Component, inject } from '@angular/core';
 import { ProductItemComponent } from '../../src/app/product-item/product-item.component';
 import { ProductsService } from '../../src/app/products.service';
 import { Product } from '../../src/app/product';
+import { Subscription } from 'rxjs';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-products',
-  imports: [ProductItemComponent],
+  imports: [RouterLink, ProductItemComponent],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css',
   providers: [ProductsService]
 })
 export class ProductsComponent {
-  products: Product[] = []
+  readonly _products = inject(ProductsService);
+  products!: Product[];
+  productSub!: Subscription;
 
-  _ProductsService = inject(ProductsService)
+  ngOnInit(): void {
+    this.getProducts();
+  }
+  getProducts(): void {
+    this.productSub = this._products.getproducts().subscribe({
+      next: (res) => {
+        this.products = res;
+      },
+      error: (err) => {
+        console.error('Error fetching products:', err);
+      },
+      complete: () => {
+        console.log('Product fetching completed');
+      }
+    });
+  }
 
-  constructor() {
-    this.products = this._ProductsService.Products
-
+  ngOnDestroy(): void {
+    if (this.productSub) {
+      this.productSub.unsubscribe();
+    }
   }
 }

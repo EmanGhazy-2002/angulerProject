@@ -1,5 +1,18 @@
-<section id="product">
-  @for (item of products; track $index) {
-  <app-product-item [Item]="item"></app-product-item>
-  }
-</section>
+<div class="site-wrapper">
+  <main id="product">
+    @for (item of products; track $index) {
+    <app-product-item [Item]="item"></app-product-item>
+    }
+  </main>
+</div>
+<!-- 
+<div class="site-wrapper">
+  <h2 class="text-center mb-4 fw-bold">Our Products</h2>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    @for (item of products; track $index) {
+    <div class="col">
+      <app-product-item [Item]="item"></app-product-item>
+    </div>
+    }
+  </div>
+</div> -->

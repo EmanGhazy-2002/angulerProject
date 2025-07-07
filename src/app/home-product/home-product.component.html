@@ -1,0 +1,10 @@
+<div class="container my-5">
+  <h2 class="text-center mb-4">All Of Our Products</h2>
+  <div class="row">
+    @if (products) { @for (item of products; track $index) {
+    <div class="col-md-4 col-sm-12 mb-4">
+      <app-product-item [Item]="item"></app-product-item>
+    </div>
+    } }
+  </div>
+</div>

@@ -1,9 +1,10 @@
 <div class="row">
+  <h2 class="text-center mb-4">men's clothing Products</h2>
   <div class="row gy-4 justify-content-center">
-    @for (item of products; track $index) {
+    @if (products) { @for (item of products; track $index) {
     <div class="col-md-4 col-12 d-flex justify-content-center">
       <app-product-item [Item]="item"></app-product-item>
     </div>
-    }
+    } }
   </div>
 </div>

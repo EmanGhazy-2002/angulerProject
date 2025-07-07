@@ -1,20 +1,19 @@
 import { Component, inject } from '@angular/core';
 import { Product } from '../product';
-import { ProductItemComponent } from '../product-item/product-item.component';
-import { ProductsService } from '../products.service';
 import { Subscription } from 'rxjs';
+import { ProductsService } from '../products.service';
+import { ProductItemComponent } from "../product-item/product-item.component";
 
 @Component({
-  selector: 'app-product-list',
-  providers: [ProductsService],
+  selector: 'app-home-product',
   imports: [ProductItemComponent],
-  templateUrl: './product-list.component.html',
-  styleUrl: './product-list.component.scss'
+  templateUrl: './home-product.component.html',
+  styleUrl: './home-product.component.scss'
 })
-export class ProductListComponent {
+export class HomeProductComponent {
   readonly _products = inject(ProductsService)
   products!: Product[];
-  productSub!: Subscription
+  private productSub!: Subscription;
 
 
   ngOnInit(): void {
@@ -23,7 +22,7 @@ export class ProductListComponent {
   getProducts(): void {
     this.productSub = this._products.getproducts().subscribe({
       next: (res => {
-        this.products = res.filter(p => p.category === "men's clothing");
+        this.products = res;
       }),
       error: (err => {
         console.error('Error fetching products:', err);
@@ -33,7 +32,6 @@ export class ProductListComponent {
       }
     })
   }
-
   ngOnDestroy(): void {
     if (this.productSub) {
       this.productSub.unsubscribe();
